@@ -1,4 +1,4 @@
-import {Expense} from "../src/expenses"
+import {Expense, ExpensesEachMonth} from "../src/expenses"
 
 describe("Expense", () => {
     const expenseSample = new Expense("2015/04/01", "exp1", 999);
@@ -17,5 +17,15 @@ describe("Expense", () => {
     });
     it('should not match invalid line', () => {
         expect(Expense.isValidLine(invalidLine)).toBeFalsy();
+    });
+});
+
+describe('Expenses', function () {
+    it('should be made from csv path', () => {
+        const expenses = ExpensesEachMonth.fromCSVPath('./spec/testdata/201905.csv');
+        expect(expenses.expenses[0].value).toBe(99);
+        expect(expenses.expenses[1].value).toBe(999);
+        expect(expenses.expenses[2].value).toBe(9999);
+        expect(expenses.expenses.length).toBe(3);
     });
 });
