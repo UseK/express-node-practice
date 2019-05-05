@@ -1,0 +1,1 @@
+export const expensesPath = '/path/to/csvfile.csv';
